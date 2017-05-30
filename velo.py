@@ -19,9 +19,14 @@ def main():
 
             points.append([row['point_lat'], row['point_lng']])
 
+    vor = Voronoi(points)
+    # print(vor.regions)
+    # print(vor.vertices)
+    for line in vor.ridge_vertices:
+        if not line[0] == -1 and not line[1] == -1:
+            print(line)
+            folium.PolyLine((vor.vertices[line[0]], vor.vertices[line[1]]), color='red', opacity=0.7).add_to(map)
 
-    folium.RegularPolygonMarker([51.213312, 4.408926],
-                                fill_color='#43d9de', radius=12).add_to(map)
     map.save('test.html')
 
 if __name__ == '__main__':

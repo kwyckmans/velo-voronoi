@@ -1,10 +1,15 @@
 appdirs==1.4.3
 branca==0.2.0
+cycler==0.10.0
 folium==0.3.0
 Jinja2==2.9.6
 MarkupSafe==1.0
+matplotlib==2.0.2
 numpy==1.12.1
 packaging==16.8
 pyparsing==2.2.0
+python-dateutil==2.6.0
+pytz==2017.2
 scipy==0.19.0
+Shapely==1.5.17.post1
 six==1.10.0
