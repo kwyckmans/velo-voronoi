@@ -1,7 +1,9 @@
 import csv
 import folium
 from scipy.spatial import Voronoi, voronoi_plot_2d
-
+import shapely
+import shapely.geometry
+import shapely.ops
 
 def main():
     map = folium.Map(location=[51.213312, 4.408926], tiles='cartodbpositron', zoom_start=13)
@@ -22,9 +24,19 @@ def main():
     vor = Voronoi(points)
     # print(vor.regions)
     # print(vor.vertices)
+    lines = [
+        shapely.geometry.LineString(vor.vertices[line])
+        for line in vor.ridge_vertices
+        if -1 not in line
+    ]
+
+    for poly in shapely.ops.polygonize(lines):
+        # print(poly)
+        geojson = shapely.geometry.mapping(poly)
+        print(geojson)
+        
     for line in vor.ridge_vertices:
-        if not line[0] == -1 and not line[1] == -1:
-            print(line)
+        if -1 not in line:
             folium.PolyLine((vor.vertices[line[0]], vor.vertices[line[1]]), color='red', opacity=0.7).add_to(map)
 
     map.save('test.html')
