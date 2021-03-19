@@ -2,7 +2,7 @@ appdirs==1.4.3
 branca==0.2.0
 cycler==0.10.0
 folium==0.3.0
-Jinja2==2.9.6
+Jinja2==2.11.3
 MarkupSafe==1.0
 matplotlib==2.0.2
 numpy==1.12.1
